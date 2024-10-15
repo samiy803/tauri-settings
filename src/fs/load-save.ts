@@ -1,5 +1,5 @@
 import { ensureSettingsFile, STATUS } from './ensure-settings-file';
-import { writeFile } from '@tauri-apps/api/fs';
+import { BaseDirectory, writeFile } from '@tauri-apps/plugin-fs';
 import { ConfigOptions, parseOptions } from '../config/config';
 
 /**
@@ -12,10 +12,11 @@ export async function saveSettings
   try {
     const finalConfig = parseOptions(options);
 
-    return await writeFile({
-      contents: JSON.stringify(newSettings, null, finalConfig.prettify ? finalConfig.numSpaces : 0),
-      path
-    })
+    return await writeFile(
+        path,
+        new Uint8Array(Buffer.from(JSON.stringify(newSettings, null, finalConfig.prettify ? finalConfig.numSpaces : 0))),
+        { baseDir: BaseDirectory.AppConfig }
+    )
   }
   catch (e) {
     throw e;

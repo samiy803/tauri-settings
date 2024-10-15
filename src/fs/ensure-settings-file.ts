@@ -1,5 +1,5 @@
 import { appConfigDir, join } from '@tauri-apps/api/path';
-import { createDir, readDir, readTextFile, writeFile } from '@tauri-apps/api/fs';
+import { mkdir, readDir, readTextFile, writeFile, BaseDirectory } from '@tauri-apps/plugin-fs';
 
 import { ConfigOptions, parseOptions } from '../config/config';
 
@@ -32,7 +32,7 @@ export async function ensureSettingsFile(options: ConfigOptions = {}): Promise<{
     catch (e) {
       // doesn't exist
       try {
-        await createDir(finalDir, {recursive: true});
+        await mkdir(finalDir, {recursive: true, baseDir: BaseDirectory.AppConfig});
       }
       catch (e) {
         throw e;
@@ -40,7 +40,7 @@ export async function ensureSettingsFile(options: ConfigOptions = {}): Promise<{
     }
 
     try {
-      const content = await readTextFile(settingsFilePath);
+      const content = await readTextFile(settingsFilePath, { baseDir: BaseDirectory.AppConfig });
 
       return {
         status: STATUS.FILE_EXISTS,
@@ -52,10 +52,11 @@ export async function ensureSettingsFile(options: ConfigOptions = {}): Promise<{
       // doesn't exist
 
         try {
-        await writeFile({
-          contents: JSON.stringify({}, null, finalConfig.prettify ? finalConfig.numSpaces : 0),
-          path: settingsFilePath
-        })
+        await writeFile(
+            settingsFilePath,
+            new Uint8Array([123, 125]), // {}
+            { baseDir: BaseDirectory.AppConfig}
+        )
 
         return {
           status: STATUS.FILE_CREATED,
