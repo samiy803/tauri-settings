@@ -1,3 +1,6 @@
+Taken from [tauri-settings](https://github.com/harshkhandeparkar/tauri-settings) and applied minimal modifications to make it work with tauri v2. This is a temporary solution until the v1.0.0 release of the original package is available (which will handle fs operations in Rust instead of JS).
+
+Below is the original README content.
 ## Tauri Settings
 A user settings manager for [Tauri](https://tauri.app) inspired by [electron-settings](https://github.com/nathanbuchar/electron-settings).
 
