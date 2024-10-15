@@ -1,6 +1,6 @@
 {
   "name": "tauri-settings-v2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A user settings manager for Tauri inspired by electron-settings.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/samiy8030/tauri-settings.git"
+    "url": "git+ssh://git@github.com/samiy803/tauri-settings.git"
   },
   "keywords": [
     "tauri",
@@ -24,9 +24,9 @@
   "author": "harshkhandeparkar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/samiy8030/tauri-settings/issues"
+    "url": "https://github.com/samiy803/tauri-settings/issues"
   },
-  "homepage": "https://github.com/samiy8030/tauri-settings#readme",
+  "homepage": "https://github.com/samiy803/tauri-settings#readme",
   "devDependencies": {
     "@tauri-apps/api": "^2.0.2",
     "@tauri-apps/plugin-fs": "^2.0.0",
